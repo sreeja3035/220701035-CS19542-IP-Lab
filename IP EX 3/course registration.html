@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Course Registeration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: "Merriweather", serif;
+            display: flex;
+        }
+        .sidebar{
+            width: 40%;
+            height: 100vh;
+            background-image: url("bg.png");
+            background-position: top;
+            font-family: "Merriweather", serif;
+            font-size: 20px;
+            color: white;
+            line-height: 1.5rem;
+            text-align: center;
+            position: fixed;
+        }
+        .sidebar::before {
+            background: rgba(0, 0, 0, 0.228); /* Black with 60% transparency */
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            z-index: -1;
+        }
+        .sidebar img{
+            display: block;
+            width: 200px;
+            height: auto;
+            padding: 0;
+            margin: auto;
+        }
+        .sidebar p{
+            font-size: 14px;
+            line-height: 2.0rem;
+
+        }
+        .content h2{
+            margin-top: 0;
+            line-height: 2.5rem;
+            word-spacing: 3px;
+
+        }
+        .content{
+            margin-top: 0;
+            padding: 20px 50px 50px;
+        }
+        .sidebar header{
+            font-size: 10px;
+            text-align: left;
+            font-family: "Arsenal SC", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+        .container{
+            width: 50%;
+            margin:0 auto;
+            padding: 20px 50px;
+            margin-left: 40%; /* Ensure the container is positioned to the right of the sidebar */
+        }
+        form{
+            margin: auto;
+            width: 500px;
+            height: auto;
+            margin: 20px auto;
+            padding: 10px 40px ;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        
+        .inputs{
+            margin-bottom: 40px;
+        }
+        .inputs label{
+            margin-right: 45px;
+        }
+        
+        .inputs input{
+            margin-top: 10px;
+            padding: 15px 10px;
+            border-radius: 30px;
+            border:1px solid #cd71cd;
+            outline: none;
+        }
+    
+        .adjust_width input{
+            width: 95%;
+        }
+        .one{
+            display: flex;
+            justify-content: space-between;
+        }
+        .dept, .year, .cat, .sem{
+            margin-bottom: 20px;
+            width: 45%;            
+            display:inline-block;
+        }
+        .dept select, .year select, .cat select, .sem select{
+            padding: 10px 5px;
+            width: 80%;
+            border-radius: 30px;
+            border:1px solid #993499;
+            background-color: #eaccea36;
+            display: flex;
+            outline: none;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        
+        .cv {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 40px;
+
+        }
+        .cv label{
+            margin: 0;
+            margin-right: 40px; 
+        }
+        .cv input[type="file"]::file-selector-button {
+            border:1px solid #993499;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 30px;
+            background-color: #eaccea36;
+            width: 50%;
+        }
+        .title{
+            text-align: center;
+            color: #800080;
+        }
+        .gender-label-female {
+            color: rgb(247, 143, 160); /* Customize color for female label */
+        }
+        .gender-label-male {
+            color: rgb(74, 150, 243); /* Customize color for male label */
+        }
+
+        .btn{
+            display: flex;
+            justify-content: space-around;
+        }
+      
+        .btn input{
+            background-color: #eaccea;
+            font-family: "Merriweather", serif;
+            font-size: 15px;
+            width: 30%;
+            padding: 12px 10px;
+            border-radius: 20px;
+            border: 1px solid #993499;
+            outline: none;
+        }
+
+        .applybtn:hover{
+            background-color: rgb(182, 218, 182);
+        }
+        .resetbtn:hover{
+            background-color: rgb(223, 159, 159);
+        }
+        
+        .head{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+        
+        .head #logo{
+            height: 50px;
+            width: auto;
+            margin: 40px 5px 35px 5px;
+            padding: 0;       
+
+       }
+        
+        .head h1{
+            margin: 0;
+            margin-top: 5px;
+            padding: 0;
+            font-size: 15px;
+        }
+        .error{
+            font-size: small;
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+            <div class="head">
+                <img src="logo.png" alt="logo"  id="logo">
+                <h1>Rajalakshmi Engineering College</h1>
+            </div>
+        </header>
+        <img src="img.png" alt="">
+        <div class="content">
+            <h2>Register for Courses Today!</h2>
+            <p>Become part of our academic community and explore new opportunities for learning and growth!<br>
+                We're welcoming students ready to excel in their studies.<br>
+                Register now and start your learning journey!</p> 
+        </div>
+    </div>
+    <div class="container">
+        <div class="title"><h2>Register Now !</h2></div>
+        <form action="" id="form" class="form" onsubmit="return validateForm()">
+            <div class="regno inputs adjust_width">
+                <label for="regno">Register No. :</label><br>
+                <input type="text" id="regno" name="regno"  placeholder="Enter your register number">
+                <span class="error" id="regno-error"></span>
+            </div>
+            <div class="name inputs adjust_width">
+                <label for="name">Name :</label><br>
+                <input type="text" id="name" name="name"  placeholder="Enter your full name">
+                <span class="error" id="name-error"></span>
+            </div>
+
+            <div class="email inputs adjust_width">
+                <label for="email">Email :</label><br>
+                <input type="text" id="email" name="email"  placeholder="Enter your email">
+                <span class="error" id="email-error"></span>
+            </div>
+
+            <div class="contact inputs adjust_width">
+                <label for="contact">Contact :</label><br>
+                <input type="tel" id="contact" name="contact"  placeholder="Enter your contact number">
+                <span class="error" id="contact-error"></span>
+            </div>
+
+            <div class="one">
+                <div class="year inputs">
+                    <label for="year">Year :</label>
+                    <select name="year" id="year"   >
+                        <option value="">Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select><br>
+                    <span class="error" id="year-error"></span>
+                </div>
+
+                <div class="dept inputs">
+                    <label for="dept">Department :</label>
+                    <select name="dept" id="dept"  >
+                        <option value="">Select Dept</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="CSBS">CSBS</option>
+                        <option value="AIDS">AIDS</option>
+                    </select><br>
+                    <span class="error" id="dept-error"></span>
+                </div>
+            </div>
+            
+        
+            <div class="one">
+                <div class="cat inputs">
+                    <label for="cat">Course Category :</label>
+                    <select name="cat" id="cat">
+                        <option value="">Select Category</option>
+                        <option value="Core">Core</option>
+                        <option value="Open Elective">Open Elective</option>
+                        <option value="Professional Elective">Professional Elective</option>
+                    </select><br>
+                    <span class="error" id="cat-error"></span>
+                </div>
+
+                <div class="sem inputs">
+                    <label for="sem">Semester :</label>
+                    <select name="sem" id="sem">
+                        <option value="">Select Sem</option>
+                        <option value="1">1st Sem</option>
+                        <option value="2">2nd Sem</option>
+                        <option value="3">3rd Sem</option>
+                        <option value="4">4th Sem</option>
+                        <option value="5">5th Sem</option>
+                        <option value="6">6th Sem</option>
+                        <option value="7">7th Sem</option>
+                        <option value="8">8th Sem</option>
+                    </select><br>
+                    <span class="error" id="sem-error"></span>
+                </div>
+            </div>
+            <div class="ccode inputs adjust_width">
+                <label for="ccode">Course Code :</label><br>
+                <input type="text" id="ccode" name="ccode"  placeholder="Enter the course code">
+                <span class="error" id="ccode-error"></span>
+            </div>
+            <div class="cname inputs adjust_width">
+                <label for="cname">Course Name :</label><br>
+                <input type="text" id="cname" name="cname"  placeholder="Enter the course name">
+                <span class="error" id="cname-error"></span>
+            </div>
+
+            <div class="credit inputs adjust_width">
+                <label for="credit">Credit :</label><br>
+                <input type="text" id="credit" name="credit"  placeholder="Enter the credit points">
+                <span class="error" id="credit-error"></span>
+            </div>
+
+            <div class="gender inputs">
+                <label>Gender :</label>
+                <input type="radio" name="gender" id="female" value="Female">
+                <label for="female" class="gender-label-female rad">Female</label>
+                <input type="radio" name="gender" id="male" value="Male">
+                <label for="male" class="gender-label-male rad">Male</label>
+                <br>
+                <span class="error" id="gender-error"></span>
+            </div>
+
+            <hr><br>
+            <div class="btn">
+                <input type="submit" form="form" value="Submit" class="applybtn">
+                <input type = "reset" value = "Clear" class="resetbtn">
+            </div>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            // Get form values
+            var formElements={
+                regno : document.getElementById("regno"),
+                name : document.getElementById("name"),
+                email : document.getElementById("email"),
+                contact : document.getElementById("contact"),
+                year : document.getElementById("year"),
+                dept : document.getElementById("dept"),
+                cat : document.getElementById("cat"),
+                sem : document.getElementById("sem"),
+                ccode : document.getElementById("ccode"),
+                cname : document.getElementById("cname"),
+                credit : document.getElementById("credit"),
+                gender : document.querySelector('input[name="gender"]:checked')        
+            };
+            
+            
+
+            // Error messages
+            var errorMessages = {
+                regno: "Please enter a valid Register No.",
+                name: "Name is required.",
+                email: "Please enter a valid Email Address.",
+                contact: "Please enter a valid Contact Number.",
+                year: "Select Year.",
+                dept: "Select Dept.",
+                cat: "Select Category.",
+                sem: "Select Semester.",
+                ccode: "Please enter a valid Subject Code.",
+                cname: "Course Name is required.",
+                credit: "Please enter a valid Credit Point (2-5).",
+                gender: "Please select your gender."
+            };
+
+
+            // Regular Expressions
+
+            var regExp = {
+                regno: /^[0-9]{9}$/,
+                email: /^([\w-]+(\.[\w-]+)*)@([\w-]+)\.([a-zA-Z]{2,})(\.[a-zA-Z]{2,})?$/,
+                contact: /^[0-9]{10}$/,
+                credit: /^[2-5]$/,
+                PE: /^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{1}[0-9]{2}$/,
+                C: /^[a-zA-Z]{2}[0-9]{5}$/,
+                OE: /^[a-zA-z]{2}[a-zA-z\d]{5}$/
+            };
+
+            var isvalid= true;
+
+            //Reset Error Messages
+            document.querySelectorAll(".error").forEach(error => error.innerHTML="");
+            
+            for(var key in formElements){
+                if(formElements.hasOwnProperty(key)){
+                    var element = formElements[key];
+                    var errorElement = document.getElementById(key+"-error");
+
+                    if(key==="gender" && !element){
+                        errorElement.innerHTML=errorMessages[key];
+                        isvalid=false;
+                    }
+                    else if(element.value===""){
+                        errorElement.innerHTML = errorMessages[key];
+                        isValid = false;
+                    }
+                    else if(key in regExp && ! regExp[key].test(element.value)){
+                        errorElement.innerHTML = errorMessages[key];
+                        isValid = false;
+                    }
+
+                }
+            }
+
+            var ccode=formElements['ccode'].value;
+            var cat=formElements['cat'].value;
+            if ((ccode === "") || ((cat==="Professional Elective" && !regExp['PE'].test(ccode)) || (cat==="Core" && !regExp['C'].test(ccode)) || (cat==="Open Elective" && !regExp['OE'].test(ccode))))
+                {
+                document.getElementById("ccode-error").innerHTML=errorMessages['ccode'];
+                isvalid= false;
+                }
+            return isValid;
+            
+         }
+    </script>
+
+
+</body>
+</html>
