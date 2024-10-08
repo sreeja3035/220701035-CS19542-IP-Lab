@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>AJAX Dynamic Suggestions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form onkeyup="suggestions()" method="GET">
+            Name: <input type="text" name="name" id="name">
+        </form>
+        <h3>Suggestions : </h3>
+        <div id="suggestions"></div>
+        <script>
+            function suggestions(){
+                const name= document.getElementById("name").value;
+                const suggestions=document.getElementById("suggestions");
+                suggestions.innerHTML = "";
+                const xhr= new XMLHttpRequest();
+                xhr.onreadystatechange= function(){
+                    if(xhr.readyState===4 && xhr.status===200){
+                        suggestions.innerHTML= xhr.responseText;
+                    }
+                };
+                xhr.open("GET", "SuggestionsServlet?name="+name, true);
+                xhr.send();
+                
+            }
+        </script>
+        
+    </body>
+</html>
